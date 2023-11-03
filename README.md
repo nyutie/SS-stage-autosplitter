@@ -12,6 +12,12 @@
 
 Prettymuch any single workshop level. Works with single bonus levels as well.
 
+## How to use:
+
+You only need to create splits per stage. The autosplitter will split when the stage goes up by one.
+
+To create splits for a level, create many empty splits, beat the level and delete the leftover splits. You can then name the splits whatever you want.
+
 ## Works with:
 
 Currently only works only with steam patch 5.1. Works with any dx version.
