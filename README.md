@@ -10,7 +10,7 @@
 
 ## What's it for:
 
-Prettymuch any single workshop level. Works with single bonus levels as well
+Prettymuch any single workshop level. Works with single bonus levels as well.
 
 ## Works with:
 
