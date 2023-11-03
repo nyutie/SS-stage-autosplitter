@@ -78,7 +78,7 @@ start
         MessageBox.Show
         (
             "This level seems to be the old type. This autosplitter isn't meant for campaign levels, and will not work.\n" +
-            "It should work for bonus levels and any workshop level.",
+            "It should work for any single bonus or workshop level.",
             "SS-stage-autosplitter", // caption
             MessageBoxButtons.OK,
             MessageBoxIcon.Warning
