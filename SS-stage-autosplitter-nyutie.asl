@@ -20,6 +20,13 @@ state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.1") {
     uint isFFx4WhenLevelIsNewType: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x398; // I know, it's dirty but it works. if you got a better way dm me
 }
 
+state("ThankYouVeryCool-Win64-Shipping", "epic patch 5.1") {
+    float levelTimer: 0x5DCB0C0, 0x118, 0xB64;
+    bool isOnMainMenu: 0x5C83A60, 0x8D0, 0x0, 0x1680, 0xD8;
+    int stage: 0x5DCB0C0, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5DCB0C0, 0x118, 0xD80, 0x2E0, 0x398;
+}
+
 startup
 {
     if(timer.CurrentTimingMethod == TimingMethod.RealTime) // copied this from somewhere lmao
@@ -51,6 +58,9 @@ init
         //     break;
         case 0x60B2000:
             version = "steam patch 5.1";
+            break;
+        case 0x638C000:
+            version = "epic patch 5.1";
             break;
         default:
             MessageBox.Show
