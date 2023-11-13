@@ -1,15 +1,29 @@
-state("ThankYouVeryCool-Win64-Shipping", "epic patch 5.2") {
-    float levelTimer: 0x5DCAF40, 0x118, 0xB64;
-    bool isOnMainMenu: 0x5C838E0, 0x8F0, 0xA0, 0x3E0, 0x320;
-    // int stage:
-    // uint isFFx4WhenLevelIsNewType:
-}
+// state("ThankYouVeryCool-Win64-Shipping", "epic patch 5.2") {
+//     float levelTimer: 0x5DCAF40, 0x118, 0xB64;
+//     bool isOnMainMenu: 0x5C838E0, 0x8F0, 0xA0, 0x3E0, 0x320;
+//     // int stage:
+//     // uint isFFx4WhenLevelIsNewType:
+// }
 
 state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.1") {
     float levelTimer: 0x5B1A2C0, 0x118, 0xB64;
     bool isOnMainMenu: 0x59D2C60, 0x2190, 0x0, 0xEA0, 0x27C;
     int stage: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x360;
     uint isFFx4WhenLevelIsNewType: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x398; // I know, it's dirty but it works. if you got a better way dm me
+}
+
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.2") {
+    float levelTimer: 0x5B1A2C0, 0x118, 0xB64;
+    bool isOnMainMenu: 0x59D2C60, 0x2190, 0x0, 0xEA0, 0x27C;
+    int stage: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x398;
+}
+
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.2") {
+    float levelTimer: 0x5B1A2C0, 0x118, 0xB64;
+    bool isOnMainMenu: 0x59D2CA0, 0x8F0, 0xA0, 0x3E0, 0x320;
+    int stage: 0x5B1A300, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B1A300, 0x118, 0xD80, 0x2E0, 0x398;
 }
 
 startup
@@ -114,7 +128,7 @@ isLoading
     {
         return true;
     }
-    
+
     return false;
 }
 
