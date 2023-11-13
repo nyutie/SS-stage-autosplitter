@@ -1,16 +1,8 @@
-// state("ThankYouVeryCool-Win64-Shipping", "steam oldleaderboards") {
-//     float levelTimer: 0x5B0F540, 0x118, 0xB54;
-//     bool isOnMainMenu: 0x59C7EE0, 0x8D0, 0x0, 0x16B0, 0xD8
-// }
-
-// state("ThankYouVeryCool-Win64-Shipping", "epic oldleaderboards") {
-//     float levelTimer: 0x5DC0380, 0x118, 0xB54;
-//     bool isOnMainMenu: 0x5D52E90, 0x30, 0x60, 0x560, 0x320;
-// }
-
-// state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.0") {
-//     float levelTimer: 0x5B19140, 0x118, 0xB64;
-//     bool isOnMainMenu: 0x59D1AE0, 0x2190, 0x0, 0xEA0, 0x27C;
+// state("ThankYouVeryCool-Win64-Shipping", "epic patch 5.2") {
+//     float levelTimer: 0x5DCAF40, 0x118, 0xB64;
+//     bool isOnMainMenu: 0x5C838E0, 0x8F0, 0xA0, 0x3E0, 0x320;
+//     // int stage:
+//     // uint isFFx4WhenLevelIsNewType:
 // }
 
 state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.1") {
@@ -20,11 +12,18 @@ state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.1") {
     uint isFFx4WhenLevelIsNewType: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x398; // I know, it's dirty but it works. if you got a better way dm me
 }
 
-state("ThankYouVeryCool-Win64-Shipping", "epic patch 5.1") {
-    float levelTimer: 0x5DCB0C0, 0x118, 0xB64;
-    bool isOnMainMenu: 0x5C83A60, 0x8D0, 0x0, 0x1680, 0xD8;
-    int stage: 0x5DCB0C0, 0x118, 0xD80, 0x2E0, 0x360;
-    uint isFFx4WhenLevelIsNewType: 0x5DCB0C0, 0x118, 0xD80, 0x2E0, 0x398;
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.2") {
+    float levelTimer: 0x5B1A2C0, 0x118, 0xB64;
+    bool isOnMainMenu: 0x59D2C60, 0x2190, 0x0, 0xEA0, 0x27C;
+    int stage: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B1A2C0, 0x118, 0xD80, 0x2E0, 0x398;
+}
+
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.2") {
+    float levelTimer: 0x5B1A2C0, 0x118, 0xB64;
+    bool isOnMainMenu: 0x59D2CA0, 0x8F0, 0xA0, 0x3E0, 0x320;
+    int stage: 0x5B1A300, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B1A300, 0x118, 0xD80, 0x2E0, 0x398;
 }
 
 startup
@@ -46,21 +45,24 @@ startup
 
 init
 {
-    switch ((long)modules.First().ModuleMemorySize) {
-        // case 0x605D000:
-        //     version = "steam oldleaderboards";
+    string MD5Hash;
+    using (var md5 = System.Security.Cryptography.MD5.Create())
+    using (var s = File.Open(modules.First().FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+    MD5Hash = md5.ComputeHash(s).Select(x => x.ToString("X2")).Aggregate((a, b) => a + b);
+
+    switch (MD5Hash)
+    {
+        // case "37C6CE6B3C0C0399424250CC7EF3457F":
+        //     version = "epic patch 5.2";
+        //     vars.SaveOffsetPath = new DeepPointer(0x5DC6B78, 0x130, 0x38, 0x70, 0x459);
         //     break;
-        // case 0x6380000:
-        //     version = "epic oldleaderboards";
-        //     break;
-        // case 0x60B0000:
-        //     version = "steam patch 5.0";
-        //     break;
-        case 0x60B2000:
+        case "A8C57AD035ED26B6E1DCED0499EBFA22":
             version = "steam patch 5.1";
+            vars.SaveOffsetPath = new DeepPointer(0x5B15EF8, 0x130, 0x38, 0x70, 0x459);
             break;
-        case 0x638C000:
-            version = "epic patch 5.1";
+        case "76EAB92EF3754360BAB05B7D535C6956":
+            version = "steam patch 5.2";
+            vars.SaveOffsetPath = new DeepPointer(0x5B15F38, 0x130, 0x38, 0x70, 0x459);
             break;
         default:
             MessageBox.Show
@@ -68,13 +70,15 @@ init
                 "Unsupported version of the game! If you're on GOG, sorry, I don't have it.\n" +
                 "If you're on Steam/Epic, I'm probably already working on the update!\n\n" +
                 "If you have any questions you can find me on the official Greylock Discord server, or the official SS/EPN speedrun Discord server.\n\n" +
-                "modules.First().BaseAddress: 0x" + modules.First().BaseAddress.ToString("X") + "\n" + 
-                "modules.first().ModuleMemorySize: 0x" + modules.First().ModuleMemorySize.ToString("X") + "\n",
-                "SS-stage-autosplitter", // caption
+                "modules.first().ModuleMemorySize: 0x" + modules.First().ModuleMemorySize.ToString("X") + "\n" +
+                "new FileInfo(modules.First().FileName).Length): 0x" + new FileInfo(modules.First().FileName).Length.ToString("X") + "\n" +
+                "MD5Hash: " + MD5Hash,
+                "SS-stage-autosplitter | LiveSplit",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning
             );
-            return;
+            print("Hash is: " + MD5Hash);
+            return false;
     }
 }
 
@@ -89,7 +93,7 @@ start
         (
             "This level seems to be the old type. This autosplitter isn't meant for campaign levels, and will not work.\n" +
             "It should work for any single bonus or workshop level.",
-            "SS-stage-autosplitter", // caption
+            "SS-stage-autosplitter | LiveSplit", // caption
             MessageBoxButtons.OK,
             MessageBoxIcon.Warning
         );
@@ -124,6 +128,7 @@ isLoading
     {
         return true;
     }
+
     return false;
 }
 
