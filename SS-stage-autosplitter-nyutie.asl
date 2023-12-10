@@ -55,19 +55,15 @@ init
     {
         // case "37C6CE6B3C0C0399424250CC7EF3457F":
         //     version = "epic patch 5.2";
-        //     vars.SaveOffsetPath = new DeepPointer(0x5DC6B78, 0x130, 0x38, 0x70, 0x459);
         //     break;
         case "A8C57AD035ED26B6E1DCED0499EBFA22":
             version = "steam patch 5.1";
-            vars.SaveOffsetPath = new DeepPointer(0x5B15EF8, 0x130, 0x38, 0x70, 0x459);
             break;
         case "76EAB92EF3754360BAB05B7D535C6956":
             version = "steam patch 5.2";
-            vars.SaveOffsetPath = new DeepPointer(0x5B15F38, 0x130, 0x38, 0x70, 0x459);
             break;
         case "5CB50DA54A0E6718DDE1E1767261E1E1":
             version = "steam patch 5.3";
-            vars.SaveOffsetPath = new DeepPointer(0x5B24838, 0x130, 0x38, 0x70, 0x459);
             break;
         default:
             MessageBox.Show
