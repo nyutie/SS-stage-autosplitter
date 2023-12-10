@@ -19,6 +19,14 @@ state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.2") {
     uint isFFx4WhenLevelIsNewType: 0x5B1A300, 0x118, 0xD80, 0x2E0, 0x398;
 }
 
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.3") {
+    float levelTimer: 0x5B28C00, 0x118, 0xB64;
+    bool isOnMainMenu: 0x59E15A0, 0xF70, 0xA0, 0x3E0, 0x320;
+    int stage: 0x5B28C00, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B28C00, 0x118, 0xD80, 0x2E0, 0x398;
+}
+
+
 startup
 {
     if(timer.CurrentTimingMethod == TimingMethod.RealTime) // copied this from somewhere lmao
@@ -56,6 +64,10 @@ init
         case "76EAB92EF3754360BAB05B7D535C6956":
             version = "steam patch 5.2";
             vars.SaveOffsetPath = new DeepPointer(0x5B15F38, 0x130, 0x38, 0x70, 0x459);
+            break;
+        case "5CB50DA54A0E6718DDE1E1767261E1E1":
+            version = "steam patch 5.3";
+            vars.SaveOffsetPath = new DeepPointer(0x5B24838, 0x130, 0x38, 0x70, 0x459);
             break;
         default:
             MessageBox.Show
