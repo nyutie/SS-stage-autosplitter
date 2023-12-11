@@ -68,6 +68,9 @@ init
         case "76EAB92EF3754360BAB05B7D535C6956":
             version = "steam patch 5.2";
             break;
+        case "5CB50DA54A0E6718DDE1E1767261E1E1":
+            version = "steam patch 5.3";
+            break;
         case "A2A6EF0B983BC581FB7BEF6CA712DF93":
             version = "steam patch 5.3.1";
             break;
