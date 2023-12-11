@@ -26,6 +26,12 @@ state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.3") {
     uint isFFx4WhenLevelIsNewType: 0x5B28C00, 0x118, 0xD80, 0x2E0, 0x398;
 }
 
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.3.1") {
+    float levelTimer: 0x5B28C80, 0x118, 0xB64;
+    bool isOnMainMenu: 0x59E1620, 0xF70, 0xA0, 0x3E0, 0x320;
+    int stage: 0x5B28C80, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B28C80, 0x118, 0xD80, 0x2E0, 0x398;
+}
 
 startup
 {
@@ -64,6 +70,9 @@ init
             break;
         case "5CB50DA54A0E6718DDE1E1767261E1E1":
             version = "steam patch 5.3";
+            break;
+        case "A2A6EF0B983BC581FB7BEF6CA712DF93":
+            version = "steam patch 5.3.1";
             break;
         default:
             MessageBox.Show
