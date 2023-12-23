@@ -33,6 +33,20 @@ state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.3.1") {
     uint isFFx4WhenLevelIsNewType: 0x5B28C80, 0x118, 0xD80, 0x2E0, 0x398;
 }
 
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.3.2") {
+    float levelTimer: 0x5B1E480, 0x118, 0xB64;
+    bool isOnMainMenu: 0x59D6E20, 0xF70, 0xA0, 0x3E0, 0x320;
+    int stage: 0x5B1E480, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B1E480, 0x118, 0xD80, 0x2E0, 0x398;
+}
+
+state("ThankYouVeryCool-Win64-Shipping", "steam patch 5.4") {
+    float levelTimer: 0x5B29D40, 0x118, 0xB64;
+    bool isOnMainMenu: 0x5B16D10, 0xE10, 0xE60, 0x320; // couldn't find old value. this is shorter though
+    int stage: 0x5B29D40, 0x118, 0xD80, 0x2E0, 0x360;
+    uint isFFx4WhenLevelIsNewType: 0x5B29D40, 0x118, 0xD80, 0x2E0, 0x398;
+}
+
 startup
 {
     if(timer.CurrentTimingMethod == TimingMethod.RealTime) // copied this from somewhere lmao
@@ -73,6 +87,12 @@ init
             break;
         case "A2A6EF0B983BC581FB7BEF6CA712DF93":
             version = "steam patch 5.3.1";
+            break;
+        case "E07998E54FE179C0BD9B6FA8B47A37D9":
+            version = "steam patch 5.3.2";
+            break;
+        case "D6B612D7A26C563461AAAA9DB064E822":
+            version = "steam patch 5.4";
             break;
         default:
             MessageBox.Show
